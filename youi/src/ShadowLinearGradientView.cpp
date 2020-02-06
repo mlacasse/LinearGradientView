@@ -6,7 +6,7 @@ using namespace yi::react;
 
 #define LOG_TAG "ShadowLinearGradientView"
 
-YI_TYPE_DEF(ShadowLinearGradientView, ShadowView)
+YI_TYPE_DEF_INST(ShadowLinearGradientView, ShadowView)
 
 YI_RN_REGISTER_VIEW_MODULE(ShadowLinearGradientView);
 
@@ -99,32 +99,17 @@ void ShadowLinearGradientView::DrawGradient()
         CYIColor startColor = props->startColor;
         CYIColor endColor = props->endColor;
 
-        YI_LOGD(LOG_TAG, "start x: %s, y: %s", CYIString::FromValue(props->start.x).GetData(), CYIString::FromValue(props->start.y).GetData());
-        YI_LOGD(LOG_TAG, "end x: %s, y: %s", CYIString::FromValue(props->end.x).GetData(), CYIString::FromValue(props->end.y).GetData());
+        YI_LOGD(LOG_TAG, "start x: %f, y: %f", props->start.x, props->start.y);
+        YI_LOGD(LOG_TAG, "end x: %f, y: %f", props->end.x, props->end.y);
 
-        YI_LOGD(LOG_TAG, "parentWidth: %s", CYIString::FromValue(parentWidth).GetData());
-        YI_LOGD(LOG_TAG, "parentHeight: %s", CYIString::FromValue(parentHeight).GetData());
+        YI_LOGD(LOG_TAG, "parentWidth: %f", parentWidth);
+        YI_LOGD(LOG_TAG, "parentHeight: %f", parentHeight);
 
-        YI_LOGD(LOG_TAG, "gradientStartPosition x: %s, y: %s", CYIString::FromValue(gradientStartPosition.x).GetData(), CYIString::FromValue(gradientStartPosition.y).GetData());
-        YI_LOGD(LOG_TAG, "gradientEndPosition x: %s, y: %s", CYIString::FromValue(gradientEndPosition.x).GetData(), CYIString::FromValue(gradientEndPosition.y).GetData());
+        YI_LOGD(LOG_TAG, "gradientStartPosition x: %f, y: %f", gradientStartPosition.x, gradientStartPosition.y);
+        YI_LOGD(LOG_TAG, "gradientEndPosition x: %f, y: %f", gradientEndPosition.x, gradientEndPosition.y);
 
-        YI_LOGD(
-            LOG_TAG,
-            "gradientStartColor r: %s, g: %s, b: %s, a: %s",
-            CYIString::FromValue(startColor.GetRed()).GetData(),
-            CYIString::FromValue(startColor.GetGreen()).GetData(),
-            CYIString::FromValue(startColor.GetBlue()).GetData(),
-            CYIString::FromValue(startColor.GetAlpha()).GetData()
-        );
-
-        YI_LOGD(
-            LOG_TAG,
-            "gradientEndColor r: %s, g: %s, b: %s, a: %s",
-            CYIString::FromValue(endColor.GetRed()).GetData(),
-            CYIString::FromValue(endColor.GetGreen()).GetData(),
-            CYIString::FromValue(endColor.GetBlue()).GetData(),
-            CYIString::FromValue(endColor.GetAlpha()).GetData()
-        );
+        YI_LOGD(LOG_TAG, "gradientStartColor r: %f, g: %f, b: %f, a: %f", startColor.GetRed(), startColor.GetGreen(), startColor.GetBlue(), startColor.GetAlpha());
+        YI_LOGD(LOG_TAG, "gradientEndColor r: %f, g: %f, b: %f, a: %f", endColor.GetRed(), endColor.GetGreen(), endColor.GetBlue(), endColor.GetAlpha());
 
         pVectorCanvasNode->PopGroup();
         pVectorCanvasNode->ClearCommandQueue();

@@ -3,7 +3,7 @@ import { requireNativeComponent } from 'react-native';
 
 const ShadowLinearGradientView = requireNativeComponent('ShadowLinearGradientView');
 
-export default class LinearGradientView extends React.PureComponent {
+export default class LinearGradient extends React.PureComponent {
   render() {
     return <ShadowLinearGradientView {...this.props} />;
   }

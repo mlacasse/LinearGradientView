@@ -17,8 +17,6 @@ public:
 
 protected:
     virtual void SetupProperties() override;
-    virtual void ConfigureCounterpartPriv(ReactComponent & instance) override;
-    virtual void DismantleCounterpartPriv(ReactComponent & instance) override;
 };
 } // namespace react
 } // namespace yi

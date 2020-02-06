@@ -5,13 +5,20 @@ import React, { Component } from 'react';
 import { AppRegistry, Image, StyleSheet, Text, View } from 'react-native';
 import { FormFactor } from '@youi/react-native-youi';
 
-import LinearGradientView from './LinearGradientView';
+import LinearGradient from './LinearGradient';
 
 export default class YiReactApp extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
+          <LinearGradient
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            startColor={{ red: 38, green: 38, blue: 38, alpha: 0 }}
+            endColor={{ red: 38, green: 38, blue: 38, alpha: 255 }}
+            style={{ position: 'absolute', height: '100%', width: '100%' }}
+          />
           <View
             style={styles.imageContainer}
             focusable={true}

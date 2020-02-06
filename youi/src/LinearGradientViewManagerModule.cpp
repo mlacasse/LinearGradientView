@@ -16,12 +16,12 @@ YI_RN_OVERRIDE_ApplyProps(LinearGradientViewManagerModule);
 YI_RN_OVERRIDE_DismantleCounterpart(LinearGradientViewManagerModule);
 YI_RN_OVERRIDE_ConfigureCounterpart(LinearGradientViewManagerModule);
 
-glm::vec2 ValidatePosition(const folly::dynamic &positionProperty)
+glm::vec2 ValidatePosition(std::map<CYIString, float> positionProperty)
 {
     glm::vec2 position{};
 
-    position.x = *ConvertDynamic<float>(positionProperty["x"]);
-    position.y = *ConvertDynamic<float>(positionProperty["y"]);
+    position.x = positionProperty["x"];
+    position.y = positionProperty["y"];
 
     bool positionValuesOk =
         position.x >= 0 &&
@@ -33,14 +33,14 @@ glm::vec2 ValidatePosition(const folly::dynamic &positionProperty)
     return position;
 }
 
-CYIColor ValidateColor(const folly::dynamic &colorProperty)
+CYIColor ValidateColor(std::map<CYIString, int32_t> &colorProperty)
 {
     CYIColor color{};
 
-    int32_t red = *ConvertDynamic<int32_t>(colorProperty["red"]);
-    int32_t green = *ConvertDynamic<int32_t>(colorProperty["green"]);
-    int32_t blue = *ConvertDynamic<int32_t>(colorProperty["blue"]);
-    int32_t alpha = *ConvertDynamic<int32_t>(colorProperty["alpha"]);
+    int32_t red = colorProperty["red"];
+    int32_t green = colorProperty["green"];
+    int32_t blue = colorProperty["blue"];
+    int32_t alpha = colorProperty["alpha"];
 
     bool redOk = red >= 0 && red <= 255;
     bool greenOk = green >= 0 && green <= 255;
@@ -59,7 +59,7 @@ CYIColor ValidateColor(const folly::dynamic &colorProperty)
 folly::dynamic LinearGradientViewManagerModule::GetNativeProps()
 {
     folly::dynamic superProps = IViewManager::GetNativeProps();
-    folly::dynamic props = folly::dynamic::object("start", "object")("end", "object")("startColor", "object")("endColor", "object")("style", "object");
+    folly::dynamic props = folly::dynamic::object("start", "object")("end", "object")("startColor", "object")("endColor", "object");
     return folly::dynamic::merge(superProps, props);
 }
 
@@ -67,31 +67,19 @@ void LinearGradientViewManagerModule::SetupProperties()
 {
     IViewManager::SetupProperties();
 
-    YI_RN_DEFINE_PROPERTY("start", [](ShadowLinearGradientView &self, folly::dynamic start) {
+    YI_RN_DEFINE_PROPERTY("start", [](ShadowLinearGradientView &self, std::map<CYIString, float> start) {
         self.GetSavedProps()->start = ValidatePosition(start);
     });
 
-    YI_RN_DEFINE_PROPERTY("end", [](ShadowLinearGradientView &self, folly::dynamic end) {
+    YI_RN_DEFINE_PROPERTY("end", [](ShadowLinearGradientView &self, std::map<CYIString, float> end) {
         self.GetSavedProps()->end = ValidatePosition(end);
     });
 
-    YI_RN_DEFINE_PROPERTY("startColor", [](ShadowLinearGradientView &self, folly::dynamic startColor) {
+    YI_RN_DEFINE_PROPERTY("startColor", [](ShadowLinearGradientView &self, std::map<CYIString, int32_t>  startColor) {
         self.GetSavedProps()->startColor = ValidateColor(startColor);
     });
 
-    YI_RN_DEFINE_PROPERTY("endColor", [](ShadowLinearGradientView &self, folly::dynamic endColor) {
-        self.GetSavedProps()->endColor = ValidateColor(endColor);
+    YI_RN_DEFINE_PROPERTY("endColor", [](ShadowLinearGradientView &self, std::map<CYIString, int32_t> endColor) {
+       self.GetSavedProps()->endColor = ValidateColor(endColor);
     });
-}
-
-void LinearGradientViewManagerModule::ConfigureCounterpartPriv(ReactComponent &inst)
-{
-    // available to connect to signals
-    YI_UNUSED(inst);
-}
-
-void LinearGradientViewManagerModule::DismantleCounterpartPriv(ReactComponent &inst)
-{
-    // available to disconnect to signals
-    YI_UNUSED(inst);
 }
