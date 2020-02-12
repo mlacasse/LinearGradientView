@@ -3,7 +3,6 @@
  */
 import React, { Component } from 'react';
 import { AppRegistry, Image, StyleSheet, Text, View } from 'react-native';
-import { FormFactor } from '@youi/react-native-youi';
 
 import LinearGradient from './LinearGradient';
 
@@ -12,24 +11,22 @@ export default class YiReactApp extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.headerContainer}>
-          <LinearGradient
-            start={{ x: 1, y: 0 }}
-            end={{ x: 0, y: 1 }}
-            startColor={{ red: 38, green: 38, blue: 38, alpha: 0 }}
-            endColor={{ red: 38, green: 38, blue: 38, alpha: 255 }}
-            style={{ position: 'absolute', height: '100%', width: '100%' }}
-          />
           <View
-            style={styles.imageContainer}
             focusable={true}
             accessible={true}
-            accessibilityLabel='You i TV logo'
-            accessibilityHint='Image in your first app'
+            accessibilityLabel='Lego!'
+            accessibilityHint='A mighty pile of lego!'
             accessibilityRole='image'
           >
             <Image
-              style={styles.image}
-              source={{ uri: 'res://drawable/default/youi_logo_red.png' }}
+              style={styles.lego}
+              source={{ uri: 'res://drawable/default/lego.jpg' }}
+            />
+            <LinearGradient
+              start={{ x: 1, y: 0 }}
+              end={{ x: 0.25, y: 0 }}
+              startColor={{ red: 38, green: 38, blue: 38, alpha: 0 }}
+              endColor={{ red: 38, green: 38, blue: 38, alpha: 255 }}
             />
           </View>
         </View>
@@ -63,20 +60,16 @@ const styles = StyleSheet.create({
     flex: 1
   },
   headerContainer: {
-    backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 2
+    backgroundColor: '#262626',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    flex: 2,
   },
-  imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 2
-  },
-  image: {
-    height: FormFactor.isTV ? 225 : 75,
-    width: FormFactor.isTV ? 225 : 75,
-    resizeMode: 'contain'
+  lego: {
+    width: 480,  // Original image dimensions are 960x540
+    height: '100%',
+    resizeMode: 'stretch'
   },
   bodyContainer: {
     alignItems: 'center',
