@@ -23,10 +23,28 @@ export default class YiReactApp extends Component {
               source={{ uri: 'res://drawable/default/lego.jpg' }}
             />
             <LinearGradient
-              start={{ x: 1, y: 0 }}
-              end={{ x: 0.25, y: 0 }}
+              start={{ x: 0, y: 0.67 }}
+              end={{ x: 0, y: 1 }}
               startColor={{ red: 38, green: 38, blue: 38, alpha: 0 }}
               endColor={{ red: 38, green: 38, blue: 38, alpha: 255 }}
+            />
+            <LinearGradient
+              start={{ x: 1, y: 0 }}
+              end={{ x: 0, y: 0 }}
+              startColor={{ red: 38, green: 38, blue: 38, alpha: 0 }}
+              endColor={{ red: 38, green: 38, blue: 38, alpha: 255 }}
+            />
+          </View>
+          <View
+            style={styles.logoContainer}
+            accessible={true}
+            accessibilityLabel='You.i TV!'
+            accessibilityHint='Art and Science!'
+            accessibilityRole='image'
+          >
+          <Image
+              style={styles.logo}
+              source={{ uri: 'res://drawable/default/youi_logo_red.png' }}
             />
           </View>
         </View>
@@ -66,9 +84,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 2,
   },
+  logoContainer: {
+    width: '50%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', // We need to use flex box to properly align the image and gradients
+    left: 0,              // so this content will need to be positioned absolutely.
+    top: 0,
+  },
   lego: {
     width: 480,  // Original image dimensions are 960x540
     height: '100%',
+    resizeMode: 'stretch'
+  },
+  logo: {
+    width: 256,  // Original image dimensions are 256x238
+    height: 238,
     resizeMode: 'stretch'
   },
   bodyContainer: {
