@@ -30,7 +30,7 @@ export default class YiReactApp extends Component {
             />
             <LinearGradient
               start={{ x: 1, y: 0 }}
-              end={{ x: 0, y: 0 }}
+              end={{ x: 0.15, y: 0 }}
               startColor={{ red: 38, green: 38, blue: 38, alpha: 0 }}
               endColor={{ red: 38, green: 38, blue: 38, alpha: 255 }}
             />
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch'
   },
   logo: {
-    width: 256,  // Original image dimensions are 256x238
-    height: 238,
+    width: 128,  // Original image dimensions are 256x238
+    height: 119,
     resizeMode: 'stretch'
   },
   bodyContainer: {
